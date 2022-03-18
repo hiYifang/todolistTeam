@@ -5,7 +5,7 @@ const libs = require('./libs');
 const { successHandler, errorHandler } = require('./responseHandler');
 const postTodo = require('./postTodo');
 
-const todos = [];
+const todos = []; // 代辦清單
 
 const requestListener = (req, res)=>{
 
