@@ -2,21 +2,18 @@ const http = require('http');
 const { v4: uuidv4 } = require('uuid');
 const errHandle = require('./errorHandle');
 const libs = require('./libs');
+const { successHandler, errorHandler } = require('./responseHandler');
+const postTodo = require('./postTodo');
 
 const todos = [];
 
 const requestListener = (req, res)=>{
-    
-    let body = "";
-    
-    req.on('data', chunk=>{
-        body+=chunk;
-    })
-    
+
     if(req.url=="/todos" && req.method == "GET"){
         // getTodo.js
     }else if(req.url=="/todos" && req.method == "POST"){
         // postTodo.js
+        postTodo(req, res, todos);
     }else if(req.url=="/todos" && req.method == "DELETE"){
         // deleteTodo.js
     }else if(req.url.startsWith("/todos/") && req.method=="DELETE"){
@@ -27,12 +24,7 @@ const requestListener = (req, res)=>{
         res.writeHead(200, libs.headers);
         res.end();
     }else{
-        res.writeHead(404, libs.headers);
-        res.write(JSON.stringify({
-            "status": "false",
-            "message": "無此網站路由"
-        }));
-        res.end();
+        errorHandler(res, 404, '無此網站路由');
     }
 }
 
