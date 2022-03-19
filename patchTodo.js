@@ -1,4 +1,5 @@
 const { successHandler, errorHandler } = require('./responseHandler');
+const { message } = require('./libs')
 
 module.exports = function(data) {
   const { req, res, todos } = data;
@@ -9,6 +10,7 @@ module.exports = function(data) {
   });
 
   req.on('end', () => {
+    const { noData, wrongColumn } = message
     try {
         const { title } = JSON.parse(body);
 
@@ -20,10 +22,10 @@ module.exports = function(data) {
             todos[index].title = title;
             successHandler(res, todos);
           } else {
-            errorHandler(res, 400, '無此資料');
+            errorHandler(res, 400, noData);
           }
         } else {
-            errorHandler(res, 400, '欄位未填寫正確');
+            errorHandler(res, 400, wrongColumn);
         }
     } catch(err) {
       errorHandler(res, 400, err.message);

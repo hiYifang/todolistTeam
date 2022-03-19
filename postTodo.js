@@ -1,14 +1,17 @@
 const { v4: uuidv4 } = require('uuid');
 const { successHandler, errorHandler } = require('./responseHandler');
+const { message } = require('./libs')
 
-const postTodo = (req, res, todos) => {
+const postTodo = (data) => {
+	const { req, res, todos } = data;
 	let body = "";
 
-    req.on('data', chunk => {
-        body += chunk;
-    });
+	req.on('data', chunk => {
+		body += chunk;
+	});
 
 	req.on('end', () => {
+		const { wrongColumn, postFail } = message
 		try {
 			const title = JSON.parse(body).title;
 			if(title !== undefined) {
@@ -19,10 +22,10 @@ const postTodo = (req, res, todos) => {
 				todos.push(todo);
 				successHandler(res, todos);
 			} else {
-				errorHandler(res, 400, '欄位未填寫正確');
+				errorHandler(res, 400, wrongColumn);
 			}
 		} catch {
-			errorHandler(res, 400, '新增失敗');
+			errorHandler(res, 400, postFail);
 		}
 	});
 };
