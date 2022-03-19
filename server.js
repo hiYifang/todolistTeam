@@ -3,29 +3,31 @@ const { v4: uuidv4 } = require('uuid');
 const errHandle = require('./errorHandle');
 const libs = require('./libs');
 const { successHandler, errorHandler } = require('./responseHandler');
+const getTodo = require('./getTodo');
 const postTodo = require('./postTodo');
 const patchTodo = require('./patchTodo');
 
 const todos = []; // 代辦清單
 
-const requestListener = (req, res)=>{
+const requestListener = (req, res) => {
 
-    if(req.url=="/todos" && req.method == "GET"){
+    if (req.url == "/todos" && req.method == "GET") {
         // getTodo.js
-    }else if(req.url=="/todos" && req.method == "POST"){
+        getTodo(res, todos)
+    } else if (req.url == "/todos" && req.method == "POST") {
         // postTodo.js
         postTodo(req, res, todos);
-    }else if(req.url=="/todos" && req.method == "DELETE"){
+    } else if (req.url == "/todos" && req.method == "DELETE") {
         // deleteTodo.js
-    }else if(req.url.startsWith("/todos/") && req.method=="DELETE"){
+    } else if (req.url.startsWith("/todos/") && req.method == "DELETE") {
         // deleteTodo.js
-    }else if(req.url.startsWith("/todos/") && req.method=="PATCH"){
+    } else if (req.url.startsWith("/todos/") && req.method == "PATCH") {
         // patchTodo.js
         patchTodo({ req, res, todos });
-    }else if(req.method == "OPTIONS"){
+    } else if (req.method == "OPTIONS") {
         res.writeHead(200, libs.headers);
         res.end();
-    }else{
+    } else {
         errorHandler(res, 404, '無此網站路由');
     }
 }
