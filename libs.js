@@ -9,10 +9,19 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
+const message = {
+    404: '無此網站路由',
+    postFail: '新增失敗',
+    wrongColumn: '欄位未填寫正確',
+    noData: '無此資料'
+}
+
 /** 資源庫 */
 const libs = {
     /** 表頭資訊 */
-    headers: headers,
+    headers,
+    /** 訊息資料 */
+    message,
 }
 
 module.exports = libs;
