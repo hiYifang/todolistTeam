@@ -12,6 +12,7 @@ const todos = []; // 代辦清單
 const requestListener = (req, res) => {
 
     if (req.url == "/todos" && req.method == "GET") {
+        // getTodo.js
         getTodo(res, todos)
     } else if (req.url == "/todos" && req.method == "POST") {
         // postTodo.js

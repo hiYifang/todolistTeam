@@ -1,12 +1,11 @@
-const libs = require('./libs')
+const { successHandler } = require('./responseHandler');
 
+/** 錯誤控制
+ * @param res requestListener 的參數 res
+ * @param data 列表資料
+ */
 function getTodo(res, data) {
-  res.writeHead(200, libs.headers)
-  res.write(JSON.stringify({
-    "status": "success",
-    "data": data
-  }))
-  res.end()
+  successHandler(res, data)
 }
 
 module.exports = getTodo;
