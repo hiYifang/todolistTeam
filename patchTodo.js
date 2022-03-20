@@ -1,7 +1,7 @@
 const { successHandler, errorHandler } = require('./responseHandler');
 const { message } = require('./libs')
 
-module.exports = function(data) {
+const patchTodo = (data) => {
   const { req, res, todos } = data;
   let body = "";
 
@@ -32,3 +32,5 @@ module.exports = function(data) {
     }
   });
 };
+
+module.exports = patchTodo;
