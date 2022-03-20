@@ -1,7 +1,7 @@
 const http = require('http');
 const libs = require('./libs');
 const { errorHandler } = require('./responseHandler');
-const getTodo = require('./getTodo');
+const { getTodo, getTodos } = require('./getTodo');
 const postTodo = require('./postTodo');
 const patchTodo = require('./patchTodo');
 
@@ -17,9 +17,11 @@ const requestListener = (req, res) => {
         todos
     }
 
-    if (url.startsWith("/todos") && method === "GET") {
-        // getTodo.js
+    if (url === "/todos" && method === "GET") {
         getTodo(data)
+    } else if (url.startsWith("/todos/") && method === "GET") {
+        // getTodo.js
+        getTodos(data)
     } else if (url === "/todos" && method === "POST") {
         // postTodo.js
         postTodo(data);

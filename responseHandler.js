@@ -1,18 +1,18 @@
-const libs = require('./libs');
+const { headers } = require('./libs');
 
 const successHandler = (res, data) => {
-	res.writeHeader(200, libs.headers);
+	res.writeHeader(200, headers);
 	res.write(JSON.stringify({
-		'status': 'success',
+		status: 'success',
 		data,
 	}));
 	res.end();
 };
 
 const errorHandler = (res, statusCode, message) => {
-	res.writeHeader(statusCode, libs.headers);
+	res.writeHeader(statusCode, headers);
 	res.write(JSON.stringify({
-		'status': 'fail',
+		status: 'fail',
 		message,
 	}));
 	res.end();
