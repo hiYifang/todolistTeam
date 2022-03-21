@@ -1,21 +1,23 @@
 const { successHandler, errorHandler } = require('./responseHandler');
 const { message } = require('./libs')
 
-/** 錯誤控制
- * @param res requestListener 的參數 res
+/** 取得所有Todo資料
  * @param data 列表資料
  */
-const getTodo = (data) => {
+const getTodos = (data) => {
   const { res, todos } = data
   successHandler(res, todos)
 }
 
-const getTodos = (data) => {
+/** 取得單一Todo資料
+ * @param data 列表資料
+ */
+const getTodo = (data) => {
   const { req, res, todos } = data;
   const id = req.url.split('/').pop();
   const index = todos.findIndex((todo) => todo.id === id);
 
-  if ( index !== -1 ) {
+  if (index !== -1) {
     successHandler(res, todos[index]);
   } else {
     const { noData } = message

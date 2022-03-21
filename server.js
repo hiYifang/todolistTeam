@@ -18,10 +18,10 @@ const requestListener = (req, res) => {
     }
 
     if (url === "/todos" && method === "GET") {
-        getTodo(data)
+        getTodos(data)
     } else if (url.startsWith("/todos/") && method === "GET") {
         // getTodo.js
-        getTodos(data)
+        getTodo(data)
     } else if (url === "/todos" && method === "POST") {
         // postTodo.js
         postTodo(data);
