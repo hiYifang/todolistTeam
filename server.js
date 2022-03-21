@@ -4,6 +4,7 @@ const { errorHandler } = require('./responseHandler');
 const { getTodo, getTodos } = require('./getTodo');
 const postTodo = require('./postTodo');
 const patchTodo = require('./patchTodo');
+const { deleteTodos, deleteTodo } = require('./deleteTodo');
 /** 代辦清單 */
 const todos = []
 
@@ -28,8 +29,10 @@ const requestListener = (req, res) => {
     postTodo(data)
   } else if (url === "/todos" && method === "DELETE") {
     // deleteTodo.js
+    deleteTodos(data)
   } else if (url.startsWith("/todos/") && method === "DELETE") {
     // deleteTodo.js
+    deleteTodo(data)
   } else if (url.startsWith("/todos/") && method === "PATCH") {
     patchTodo(data)
   } else if (method === "OPTIONS") {
