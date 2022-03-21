@@ -2,7 +2,7 @@ const { headers } = require('./libs');
 
 /** 成功
  * @param res requestListener 的 res
- * @param data 列表資料
+ * @param data requestListener 資訊與清單物件
  */
 const successHandler = (res, data) => {
 	res.writeHeader(200, headers);

@@ -3,7 +3,7 @@ const { successHandler, errorHandler } = require('./responseHandler');
 const { message } = require('./libs')
 
 /** 新增單筆代辦
- * @param data 列表資料
+ * @param data requestListener 資訊與清單物件
  */
 const postTodo = (data) => {
 	const { req, res, todos } = data;

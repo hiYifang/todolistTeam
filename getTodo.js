@@ -2,7 +2,7 @@ const { successHandler, errorHandler } = require('./responseHandler');
 const { message } = require('./libs')
 
 /** 取得所有Todo資料
- * @param data 列表資料
+ * @param data requestListener 資訊與清單物件
  */
 const getTodos = (data) => {
   const { res, todos } = data
