@@ -9,20 +9,17 @@ const headers = {
   'Content-Type': 'application/json'
 }
 
-/** 錯誤訊息 */
-class errorMessage {
-  /** 無此網站路由 */
-  404 = '無此網站路由'
-  /** 新增失敗 */
-  postFail = '新增失敗'
-  /** 欄位未填寫正確 */
-  wrongColumn = '欄位未填寫正確'
-  /** 無此資料 */
-  noData = '無此資料'
-}
-
 /** 狀態訊息 */
-const message = new errorMessage()
+const message = {
+  /** 無此網站路由 */
+  404 : '無此網站路由',
+  /** 新增失敗 */
+  postFail : '新增失敗',
+  /** 欄位未填寫正確 */
+  wrongColumn : '欄位未填寫正確',
+  /** 無此資料 */
+  noData : '無此資料'
+}
 
 /** 資源庫 */
 const libs = {
