@@ -5,12 +5,12 @@ const { headers } = require('./libs');
  * @param data requestListener 資訊與清單物件
  */
 const successHandler = (res, data) => {
-	res.writeHeader(200, headers);
-	res.write(JSON.stringify({
-		status: 'success',
-		data,
-	}));
-	res.end();
+  res.writeHeader(200, headers);
+  res.write(JSON.stringify({
+    status: 'success',
+    data,
+  }));
+  res.end();
 };
 
 /** 失敗
@@ -19,15 +19,15 @@ const successHandler = (res, data) => {
  * @param message 錯誤訊息
  */
 const errorHandler = (res, statusCode, message) => {
-	res.writeHeader(statusCode, headers);
-	res.write(JSON.stringify({
-		status: 'fail',
-		message,
-	}));
-	res.end();
+  res.writeHeader(statusCode, headers);
+  res.write(JSON.stringify({
+    status: 'fail',
+    message,
+  }));
+  res.end();
 };
 
 module.exports = {
-	successHandler,
-	errorHandler,
+  successHandler,
+  errorHandler,
 };
